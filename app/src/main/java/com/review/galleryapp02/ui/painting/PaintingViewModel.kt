@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import android.content.Context
+import android.media.AudioDeviceInfo
+import android.media.AudioManager
 
 @HiltViewModel
 class PaintingViewModel @Inject constructor(
@@ -29,4 +32,17 @@ class PaintingViewModel @Inject constructor(
             _paintings.value = repository.getPaintings()
         }
     }
+}
+fun headphonesConnected(context: Context): Boolean {
+    val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+    for (device in devices) {
+        if (device.type == AudioDeviceInfo.TYPE_WIRED_HEADPHONES ||
+            device.type == AudioDeviceInfo.TYPE_WIRED_HEADSET ||
+            device.type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP ||
+            device.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO) {
+            return true
+        }
+    }
+    return false
 }

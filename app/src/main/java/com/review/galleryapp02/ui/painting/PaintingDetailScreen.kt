@@ -1,6 +1,7 @@
 package com.ebookfrenzy.galleryapp02.ui.painting
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.media.MediaPlayer
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.Image
@@ -8,12 +9,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -33,9 +36,25 @@ fun PaintingDetailScreen(
     viewModel: PaintingViewModel = hiltViewModel()) {
 
     val paintingState = viewModel.paintings.collectAsState()
+
+    val context = LocalContext.current
+
     var isPlaying by remember { mutableStateOf(false) }
     var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
+    var showDialog by remember { mutableStateOf(false) }
 
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Audífonos no conectados") },
+            text = { Text("Por favor, conecte los audífonos para reproducir audio.") },
+            confirmButton = {
+                Button(onClick = { showDialog = false }) {
+                    Text("Aceptar")
+                }
+            }
+        )
+    }
     Scaffold(
         topBar = {
                 Spacer(Modifier.size(100.dp))
@@ -107,22 +126,27 @@ fun PaintingDetailScreen(
                                         Spacer(modifier = Modifier.height(16.dp))
                                         Button(
                                             onClick = {
-                                                if (isPlaying) {
-                                                    mediaPlayer?.stop()
-                                                    mediaPlayer?.reset()
-                                                    mediaPlayer?.release()
-                                                    mediaPlayer = null
-                                                    isPlaying = false
-                                                } else {
-                                                    mediaPlayer = MediaPlayer().apply {
-                                                        setDataSource(painting.audioUrl)
-                                                        prepare()
-                                                        start()
-                                                        setOnCompletionListener {
-                                                            isPlaying = false
+                                                if (headphonesConnected(context)) {
+                                                    if (isPlaying) {
+                                                        mediaPlayer?.stop()
+                                                        mediaPlayer?.reset()
+                                                        mediaPlayer?.release()
+                                                        mediaPlayer = null
+                                                        isPlaying = false
+                                                    } else {
+                                                        mediaPlayer = MediaPlayer().apply {
+                                                            setDataSource(painting.audioUrl)
+                                                            prepare()
+                                                            start()
+                                                            setOnCompletionListener {
+                                                                isPlaying = false
+                                                            }
                                                         }
+                                                        isPlaying = true
                                                     }
-                                                    isPlaying = true
+                                                }
+                                                else {
+                                                    showDialog = true
                                                 }
                                             },
                                             colors = ButtonDefaults.buttonColors(

@@ -1,7 +1,5 @@
 package com.ebookfrenzy.galleryapp02.ui.maps
 
-
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ebookfrenzy.galleryapp02.data.model.LocationModel
