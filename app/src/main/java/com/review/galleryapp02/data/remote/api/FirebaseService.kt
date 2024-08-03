@@ -1,7 +1,5 @@
 package com.ebookfrenzy.galleryapp02.data.remote.api
 
-
-
 import com.ebookfrenzy.galleryapp02.data.model.Gallery
 import com.ebookfrenzy.galleryapp02.data.model.GalleryMapsModel
 import com.ebookfrenzy.galleryapp02.data.model.Painting

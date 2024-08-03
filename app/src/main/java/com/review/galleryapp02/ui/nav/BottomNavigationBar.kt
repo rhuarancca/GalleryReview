@@ -2,20 +2,22 @@ package com.ebookfrenzy.galleryapp02.ui.main
 
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.review.galleryapp02.ui.nav.BottomNavItem
 
 
 @Composable
@@ -25,7 +27,6 @@ fun BottomNavigationBar(navController: NavHostController) {
         BottomNavItem.Maps,
         BottomNavItem.ScanQr,
         BottomNavItem.GalleryMaps,
-        //BottomNavItem.Room,
         BottomNavItem.Painting
 
     )
@@ -45,7 +46,8 @@ fun BottomNavigationBar(navController: NavHostController) {
                     Image(
                         painter = painterResource(id = item.icon),
                         contentDescription = null,
-                        modifier = Modifier.size(if (isSelected) 35.dp else 24.dp) // Tamaño más grande si está seleccionado
+                        modifier = Modifier.size(if (isSelected) 35.dp  else 24.dp)
+                            .background(if (isSelected) Color.LightGray else Color.Transparent)// Tamaño más grande si está seleccionado
                     )
                 },
                 selectedContentColor = Color.Black,
@@ -66,4 +68,3 @@ fun BottomNavigationBar(navController: NavHostController) {
         }
     }
 }
-

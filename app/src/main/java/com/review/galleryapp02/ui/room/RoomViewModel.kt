@@ -8,8 +8,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.ebookfrenzy.galleryapp02.beacon.BeaconScanner
+import com.ebookfrenzy.galleryapp02.data.model.Painting
 import com.ebookfrenzy.galleryapp02.data.model.RoomModel
 import com.ebookfrenzy.galleryapp02.data.repository.GalleryMapsRepository
+import com.ebookfrenzy.galleryapp02.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,13 +1,8 @@
 package com.ebookfrenzy.galleryapp02.data.repository
 
-
-
-
-
 import android.util.Log
 import com.ebookfrenzy.galleryapp02.data.model.Gallery
 import com.ebookfrenzy.galleryapp02.data.remote.api.FirebaseService
-
 import com.ebookfrenzy.galleryapp02.utils.Resource
 import javax.inject.Inject
 

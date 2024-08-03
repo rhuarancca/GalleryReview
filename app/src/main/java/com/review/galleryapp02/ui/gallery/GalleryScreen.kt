@@ -94,6 +94,8 @@ fun GalleryScreen(viewModel: GalleryViewModel = hiltViewModel(), imageHeight: Dp
                 is Resource.Error -> {
                     Text(text = galleries.message ?: "An error occurred")
                 }
+
+                else -> {}
             }
         }
     }
