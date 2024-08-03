@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.sp
 import com.ebookfrenzy.galleryapp02.R
 
 @Composable
@@ -98,7 +99,11 @@ fun GalleryMapsScreen(
     ) {
         gallery?.let { gallery ->
             Column {
-                Text(text = gallery.name, modifier = Modifier.padding(top = 50.dp, bottom = 16.dp))
+                Text(
+                    text = gallery.name,
+                    modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 50.dp, bottom = 16.dp),
+                    fontSize = 30.sp
+                    )
 
                 // Dibujar el plano de la galería
                 Box(modifier = Modifier.fillMaxSize()) {

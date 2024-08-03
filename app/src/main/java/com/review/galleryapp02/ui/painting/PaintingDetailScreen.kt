@@ -78,12 +78,12 @@ fun PaintingDetailScreen(
                                             Column () {
                                                 Spacer(modifier = Modifier.height(8.dp))
                                                 Text(
-                                                    text = painting.artist,
-                                                    style = MaterialTheme.typography.titleMedium
-                                                )
-                                                Text(
                                                     text = painting.title,
                                                     style = MaterialTheme.typography.titleLarge
+                                                )
+                                                Text(
+                                                    text = painting.artist,
+                                                    style = MaterialTheme.typography.titleMedium
                                                 )
                                             }
 
