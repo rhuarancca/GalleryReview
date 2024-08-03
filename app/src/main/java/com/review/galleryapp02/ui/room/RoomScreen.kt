@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -61,7 +62,7 @@ fun RoomScreen(
         -0.5f to 2f, // Imagen 1 (izquierda supp)
         -0.5f to 6f, // Imagen 2 (izquierda inf)
         2.2f to 9f, // Imagen 3 (medio inf)
-        4.5f to 3f, // Imagen 4 (derecha)
+        5.2f to 3f, // Imagen 4 (derecha)
     )
 ) {
     val context = LocalContext.current
@@ -88,6 +89,8 @@ fun RoomScreen(
     val room by viewModel.room.collectAsState()
     val userPosition by viewModel.userPosition.collectAsState(initial = null)
     val userPositionV2 = Position(2.0f, 1.0f)
+    var isSwitchChecked by remember { mutableStateOf(false) }
+    var isPlaying by remember { mutableStateOf(false) } //activar-desactivar beacon
 
     room?.let {
         Column(
@@ -96,7 +99,9 @@ fun RoomScreen(
                 .padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally,
 
         ) {
-            Row (modifier = Modifier.align(Alignment.CenterHorizontally)){
+            Spacer(modifier = Modifier.height(45.dp))
+
+            Row (modifier = Modifier.align(Alignment.Start)){
                 Button(
                     onClick = {
                         navController.popBackStack()
@@ -113,15 +118,25 @@ fun RoomScreen(
                     )
 
                 }
-                Spacer(modifier = Modifier.width(45.dp))
+                Spacer(modifier = Modifier.width(50.dp))
                 Text(
                     text = it.name,
                     fontSize = 30.sp
                 )
-                Spacer(modifier = Modifier.width(45.dp))
-                Text(
-                    text = "  ",
-                    fontSize = 30.sp
+                Spacer(modifier = Modifier.width(50.dp))
+                Switch(
+                    checked = isSwitchChecked,
+                    onCheckedChange = { isChecked ->
+                        isSwitchChecked = isChecked
+                        if (isChecked) {
+                            if (isPlaying) {
+
+                            }
+                        } else {
+
+                            isPlaying = false
+                        }
+                    }
                 )
             }
 

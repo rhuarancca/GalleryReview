@@ -11,7 +11,7 @@ sealed class BottomNavItem(@DrawableRes var icon: Int, var route: String) {
     object ScanQr: BottomNavItem(R.drawable.scanqr_icon,"scanqr")
 
     object GalleryMaps: BottomNavItem( R.drawable.gallmaps_icon,"galleryMaps")
-    object Painting : BottomNavItem(R.drawable.baseline_icon, "painting")
+    object Painting : BottomNavItem(R.drawable.paint_icon, "painting")
 
     object returnButton : BottomNavItem(R.drawable.icon_return, "return")
 }

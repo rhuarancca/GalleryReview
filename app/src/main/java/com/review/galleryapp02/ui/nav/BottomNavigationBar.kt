@@ -1,11 +1,17 @@
 package com.ebookfrenzy.galleryapp02.ui.main
 
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.runtime.Composable
@@ -34,7 +40,10 @@ fun BottomNavigationBar(navController: NavHostController) {
     BottomNavigation(
         backgroundColor = Color.White, // Fondo blanco
         contentColor = Color.Black, // Color de contenido negro
-        elevation = 8.dp // Añadir elevación
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(65.dp),
+        elevation = 0.dp // Añadir elevación
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -42,12 +51,15 @@ fun BottomNavigationBar(navController: NavHostController) {
         items.forEach { item ->
             val isSelected = currentRoute == item.route
             BottomNavigationItem(
+                modifier = Modifier.size(35.dp)
+                    .background(if (isSelected) Color.LightGray else Color.Transparent)
+                    .padding(5.dp)
+                ,
                 icon = {
                     Image(
                         painter = painterResource(id = item.icon),
                         contentDescription = null,
-                        modifier = Modifier.size(if (isSelected) 35.dp  else 24.dp)
-                            .background(if (isSelected) Color.LightGray else Color.Transparent)// Tamaño más grande si está seleccionado
+
                     )
                 },
                 selectedContentColor = Color.Black,

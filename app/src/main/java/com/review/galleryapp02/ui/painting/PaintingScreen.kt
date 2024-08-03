@@ -75,7 +75,7 @@ fun PaintingItem(painting: Painting, navController: NavHostController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
-                .border(BorderStroke(2.dp, color = Color.LightGray),
+                .border(BorderStroke(2.dp, color = Color.Black),
                     RoundedCornerShape(15.dp)
                 )
                 .padding(2.dp)

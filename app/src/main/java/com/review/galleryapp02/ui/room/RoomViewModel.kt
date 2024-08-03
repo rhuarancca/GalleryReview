@@ -116,4 +116,5 @@ class RoomViewModel @Inject constructor(
             _room.value = gallery?.rooms?.get(roomId)
         }
     }
+
 }

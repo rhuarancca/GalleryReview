@@ -39,24 +39,18 @@ fun GalleryMapsScreen(
         0.dp to 300.dp, //Rectangulo2
         100.dp to 0.dp, //Rectangulo3
         250.dp to 0.dp, //Rectangulo4
-        250.dp to 100.dp, //Rectangulo5
-        250.dp to 300.dp //Rectangulo6
     ),
     roomSizes: List<Pair<Dp, Dp>> = listOf(
         100.dp to 300.dp,
         100.dp to 150.dp,
-        150.dp to 100.dp,
-        100.dp to 100.dp,
-        100.dp to 200.dp,
-        100.dp to 150.dp
+        150.dp to 200.dp,
+        100.dp to 400.dp,
     ),
     nameOffsets: List<Pair<Dp, Dp>> = listOf(
-        -85.dp to -160.dp,
-        -85.dp to -150.dp,
-        -105.dp to -80.dp,
-        -85.dp to -80.dp,
-        -85.dp to 0.dp,
-        -85.dp to -300.dp
+        -0.dp to -0.dp,
+        -0.dp to -0.dp,
+        -0.dp to -0.dp,
+        -0.dp to -0.dp,
     )
 ) {
     val gallery by viewModel.gallery.collectAsState()
@@ -65,6 +59,7 @@ fun GalleryMapsScreen(
     val density = LocalDensity.current
 
     // Variables para mover los iconos
+    /*
     val iconOffsets = remember {
         mutableStateListOf(
             mutableStateOf(Offset(240f, 80f)),
@@ -77,17 +72,18 @@ fun GalleryMapsScreen(
             mutableStateOf(Offset(650f, 500f))
         )
     }
+    */
 
     // Variable para mover la imagen central
     var centerImageOffset by remember { mutableStateOf(Offset(350f, 500f)) }
     // Variable para mover el texto vertical
     var verticalTextOffset by remember { mutableStateOf(Offset(50f, 1300f)) }
     // Variable para mover la puerta doble
-    var additionalImageOffset by remember { mutableStateOf(Offset(100f, 1350f)) }
+    //var additionalImageOffset by remember { mutableStateOf(Offset(100f, 1350f)) }
     // Variable para mover el cuadrado adicional
     var additionalSquareOffset by remember { mutableStateOf(Offset(690f, 1250f)) }
     // Variable para mover el ícono adicional
-    var additionalIconOffset by remember { mutableStateOf(Offset(780f, 1300f)) }
+    //var additionalIconOffset by remember { mutableStateOf(Offset(780f, 1300f)) }
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -99,6 +95,10 @@ fun GalleryMapsScreen(
     ) {
         gallery?.let { gallery ->
             Column {
+                Text(
+                    text = "",
+                    modifier = Modifier.height(30.dp)
+                )
                 Text(
                     text = gallery.name,
                     modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 50.dp, bottom = 16.dp),
@@ -128,7 +128,7 @@ fun GalleryMapsScreen(
                                         offset.y.toInt()
                                     )
                                 }
-                                .size(size.width.dp, size.height.dp)
+                                .size(size.width.dp*53/100, size.height.dp*53/100)
                                 .clickable {
                                     onRoomClick(roomId)
                                 }
@@ -147,8 +147,8 @@ fun GalleryMapsScreen(
                                         .fillMaxSize()
                                         .padding(8.dp)
                                         .offset(
-                                            x = with(density) { nameOffset.first.toPx().toDp() },
-                                            y = with(density) { nameOffset.second.toPx().toDp() }
+                                            x = nameOffset.first,
+                                            y = nameOffset.second
                                         ),
                                     contentAlignment = Alignment.Center
                                 ) {
@@ -162,6 +162,7 @@ fun GalleryMapsScreen(
                     }
 
                     // Dibujar íconos que se pueden mover
+                    /*
                     iconOffsets.forEachIndexed { index, iconOffset ->
                         var iconPosition by remember { iconOffset }
 
@@ -190,8 +191,9 @@ fun GalleryMapsScreen(
                             )
                         }
                     }
-
+*/
                     // Añadir una imagen en el centro que se puede mover
+                    /*
                     Box(
                         modifier = Modifier
                             .offset { IntOffset(centerImageOffset.x.toInt(), centerImageOffset.y.toInt()) }
@@ -211,7 +213,7 @@ fun GalleryMapsScreen(
                             modifier = Modifier.size(100.dp) // Ajusta el tamaño según sea necesario
                         )
                     }
-
+*/
                     // Añadir texto vertical que se puede mover
                     Box(
                         modifier = Modifier
@@ -233,7 +235,7 @@ fun GalleryMapsScreen(
                         }
                     }
 
-                    // Añadir la puerta doble
+                    /* Añadir la puerta doble
                     Box(
                         modifier = Modifier
                             .offset { IntOffset(additionalImageOffset.x.toInt(), additionalImageOffset.y.toInt()) }
@@ -253,7 +255,7 @@ fun GalleryMapsScreen(
                             modifier = Modifier.size(70.dp) // Ajusta el tamaño según sea necesario
                         )
                     }
-
+*/
                     // Cuadrado adicional SSHH
                     Box(
                         modifier = Modifier
@@ -278,6 +280,7 @@ fun GalleryMapsScreen(
                     }
 
                     // Añadir ícono adicional que se puede mover
+                    /*
                     Box(
                         modifier = Modifier
                             .offset { IntOffset(additionalIconOffset.x.toInt(), additionalIconOffset.y.toInt()) }
@@ -296,7 +299,7 @@ fun GalleryMapsScreen(
                             contentDescription = null,
                             modifier = Modifier.size(30.dp) // Ajusta el tamaño según sea necesario
                         )
-                    }
+                    }*/
                 }
             }
         } ?: run {
