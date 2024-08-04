@@ -189,15 +189,14 @@ fun RoomScreen(
                         }
 
                         // Dibujar la posición del usuario
-                        userPosition?.let { position ->
-                            Canvas(modifier = Modifier.matchParentSize()) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Canvas(modifier = Modifier.fillMaxSize()) {
                                 drawCircle(
-                                    color = Color.Red,
+                                    color = Color.Black,
                                     radius = circleRadius,
-                                    center = Offset(
-                                        userPositionV2.Xposition,
-                                        userPositionV2.Yposition
-                                    )
                                 )
                             }
                         }

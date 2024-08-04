@@ -31,32 +31,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.ebookfrenzy.galleryapp02.utils.Resource
 import androidx.navigation.NavHostController
-import com.review.galleryapp02.data.rest.ApiClient
-import retrofit2.Call
+
 import retrofit2.Callback
-import retrofit2.Response
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun PaintingScreen(navController: NavHostController, viewModel: PaintingViewModel = hiltViewModel()) {
     val paintingState = viewModel.paintings.collectAsState()
     val excludedIds = listOf("paintingId1", "paintingId2", "paintingId3", "paintingId4")
-
-    var paintingsAPI by remember { mutableStateOf(listOf<Painting>()) }
-
-    LaunchedEffect(Unit) {
-        ApiClient.instance.getAllPaintings().enqueue(object : Callback<List<Painting>> {
-            override fun onResponse(call: Call<List<Painting>>, response: Response<List<Painting>>) {
-                if (response.isSuccessful) {
-                    paintingsAPI = response.body() ?: listOf()
-                }
-            }
-            override fun onFailure(call: Call<List<Painting>>, t: Throwable) {
-                // Handle error
-            }
-        })
-    }
-
 
     Scaffold {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -67,7 +49,7 @@ fun PaintingScreen(navController: NavHostController, viewModel: PaintingViewMode
                         val filteredPaintings = paintingList.filterNot { it.id in excludedIds }
                         Column(modifier = Modifier.padding(top = 16.dp)) { // Añadir padding en la parte superior
                             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                                items(paintingsAPI) { painting ->
+                                items(filteredPaintings) { painting ->
                                     PaintingItem(painting, navController)
                                 }
                             }

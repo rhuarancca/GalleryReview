@@ -93,7 +93,6 @@ fun MapsScreen(viewModel: MapViewModel = hiltViewModel()) {
                             val cameraPositionState = rememberCameraPositionState()
 
                             LaunchedEffect(Unit) {
-                                // Calcula los límites para los puntos de interés
                                 val bounds = LatLngBounds.Builder()
                                     .include(viewModel.pointA)
                                     .include(viewModel.pointB)
