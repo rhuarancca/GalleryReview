@@ -20,6 +20,7 @@ class PaintingViewModel @Inject constructor(
     private val repository: PaintingRepository
 ) : ViewModel() {
 
+
     private val _paintings = MutableStateFlow<Resource<List<Painting>>>(Resource.Loading())
     val paintings: StateFlow<Resource<List<Painting>>> = _paintings
 
@@ -33,6 +34,8 @@ class PaintingViewModel @Inject constructor(
         }
     }
 }
+
+
 fun headphonesConnected(context: Context): Boolean {
     val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)

@@ -195,8 +195,8 @@ fun RoomScreen(
                                     color = Color.Red,
                                     radius = circleRadius,
                                     center = Offset(
-                                        userPositionV2.Xposition * canvasSize.width / roomWidthMeters,
-                                        userPositionV2.Yposition * canvasSize.height / roomHeightMeters
+                                        userPositionV2.Xposition,
+                                        userPositionV2.Yposition
                                     )
                                 )
                             }
